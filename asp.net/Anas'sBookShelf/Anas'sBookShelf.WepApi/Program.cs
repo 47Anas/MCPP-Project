@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore;
+
 namespace Anas_sBookShelf.WepApi
 {
     public class Program
@@ -14,7 +16,13 @@ namespace Anas_sBookShelf.WepApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
             var app = builder.Build();
+            
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

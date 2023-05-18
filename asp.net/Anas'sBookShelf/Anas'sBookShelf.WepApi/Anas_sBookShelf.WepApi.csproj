@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Anas_sBookShelf.WepApi</RootNamespace>
+    <StartupObject></StartupObject>
+    <AssemblyName>Anas_sBookShelf.WepApi</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anas'sBookShelf.Entities\Entities.csproj" />
+    <ProjectReference Include="..\Anas'sBookShelf.Entities\BookShelf.Entities.csproj" />
   </ItemGroup>
 
 </Project>
