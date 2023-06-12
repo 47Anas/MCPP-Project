@@ -1,4 +1,5 @@
-﻿using Anas_sBookShelf.Entities;
+﻿using Anas_sBookShelf.Dtos.CategoriesDtos;
+using Anas_sBookShelf.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace Anas_sBookShelf.Dtos.BookDtos
 
         public double Price { get; set; }
 
-        public List<Cart> Carts { get; set; }
+      //  public List<Cart> Carts { get; set; }
+
+        public List<CategoryDto> Categories{ get; set; }
     }
 }
+

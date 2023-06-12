@@ -1,7 +1,7 @@
 ﻿using Anas_sBookShelf.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Anas_sBookShelf.WepApi
+namespace Anas_sBookShelf.EfCore
 {
     public class ApplicationDbContext : DbContext
     {
