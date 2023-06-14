@@ -22,10 +22,26 @@ namespace Anas_sBookShelf.WepApi
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+            });
+
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "BookShelfCors",
+                                  policy =>
+                                  {
+                                      policy
+                                        .WithOrigins("http://localhost:4200")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                                  });
             });
 
             var app = builder.Build();
-            
+
+
+            app.UseCors("BookShelfCors");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
