@@ -65,10 +65,16 @@ namespace Anas_sBookShelf.WepApi.Controllers
 
             _context.Books.Add(book);
 
+            await UpdateBookCategories(bookDto.CategoryIds, book);
+
+
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBook", new { id = book.Id }, book);
+            return Ok();
         }
+
+       
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditBook(int id, BookDto bookDto)
@@ -125,6 +131,17 @@ namespace Anas_sBookShelf.WepApi.Controllers
             return (_context.Books?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
+        private async Task UpdateBookCategories(List<int> categoryIds, Book book)
+        {
+            book.Categories.Clear();
+
+            var Categories = await _context
+                                .Categories
+                                .Where(c => categoryIds.Contains(c.Id))
+                                .ToListAsync();
+
+            book.Categories.AddRange(Categories);
+        }
         #endregion
     }
 }

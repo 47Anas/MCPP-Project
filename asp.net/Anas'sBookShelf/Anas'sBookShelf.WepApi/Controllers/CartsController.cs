@@ -1,60 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Anas_sBookShelf.Entities;
-using Anas_sBookShelf.WepApi;
 using Anas_sBookShelf.EfCore;
+using AutoMapper;
+using Anas_sBookShelf.Dtos.CartDtos;
 
 namespace Anas_sBookShelf.WepApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CartsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        #region Data and Const
 
-        public CartsController(ApplicationDbContext context)
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+
+        public CartsController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // GET: api/Carts
+        #endregion
+
+        #region Actions
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cart>>> GetCarts()
+        public async Task<ActionResult<IEnumerable<CartListDto>>> GetCarts()
         {
-          if (_context.Carts == null)
-          {
-              return NotFound();
-          }
-            return await _context.Carts.ToListAsync();
+             var carts = await _context
+                                        .Carts
+                                        .Include(c => c.Customer)
+                                        .ToListAsync();
+
+             var cartsDtos = _mapper.Map<List<CartListDto>>(carts);
+
+            return cartsDtos;
         }
 
-        // GET: api/Carts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cart>> GetCart(int id)
+        public async Task<ActionResult<CartDetailsDto>> GetCart(int id)
         {
-          if (_context.Carts == null)
-          {
-              return NotFound();
-          }
-            var cart = await _context.Carts.FindAsync(id);
+            if (_context.Carts == null)
+            {
+                return NotFound();
+            }
+
+            var cart = await _context
+                                    .Carts  
+                                    .Include(c => c.Customer)
+                                    .Include(c => c.Books)
+                                        .ThenInclude(c => c.Categories)
+                                    .Where(c => c.Id == id)
+                                    .SingleOrDefaultAsync();
 
             if (cart == null)
             {
                 return NotFound();
             }
+            var cartDto = _mapper.Map<CartDetailsDto>(cart);
 
-            return cart;
+            return cartDto;
         }
 
-        // PUT: api/Carts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCart(int id, Cart cart)
+        public async Task<IActionResult> EditCart(int id, Cart cart)
         {
             if (id != cart.Id)
             {
@@ -82,22 +93,19 @@ namespace Anas_sBookShelf.WepApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Carts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cart>> PostCart(Cart cart)
+        public async Task<ActionResult<Cart>> CreateCart(Cart cart)
         {
-          if (_context.Carts == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Carts'  is null.");
-          }
+            if (_context.Carts == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Carts'  is null.");
+            }
             _context.Carts.Add(cart);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCart", new { id = cart.Id }, cart);
         }
 
-        // DELETE: api/Carts/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCart(int id)
         {
@@ -117,9 +125,14 @@ namespace Anas_sBookShelf.WepApi.Controllers
             return NoContent();
         }
 
+        #endregion
+
+        #region Privates
+
         private bool CartExists(int id)
         {
             return (_context.Carts?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        } 
+        #endregion
     }
 }

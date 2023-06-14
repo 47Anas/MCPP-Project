@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShelf.Entities", "Anas'
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anas_sBookShelf.Dtos", "Anas_sBookShelf.Dtos\Anas_sBookShelf.Dtos.csproj", "{DF8E79E0-5629-4ABF-899A-CC21303A9EC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnassBookShelf.EfCore", "AnassBookShelf.EfCore\AnassBookShelf.EfCore.csproj", "{CA02935F-91D3-4DF9-816D-DD126C6D0CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnassBookShelf.EfCore", "AnassBookShelf.EfCore\AnassBookShelf.EfCore.csproj", "{CA02935F-91D3-4DF9-816D-DD126C6D0CB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnassBookShelf.Utils", "AnassBookShelf.Utils\AnassBookShelf.Utils.csproj", "{00B44514-7FBB-4244-AD89-29D4206A1604}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CA02935F-91D3-4DF9-816D-DD126C6D0CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA02935F-91D3-4DF9-816D-DD126C6D0CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA02935F-91D3-4DF9-816D-DD126C6D0CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B44514-7FBB-4244-AD89-29D4206A1604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B44514-7FBB-4244-AD89-29D4206A1604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B44514-7FBB-4244-AD89-29D4206A1604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B44514-7FBB-4244-AD89-29D4206A1604}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

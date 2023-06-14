@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AnassBookShelf.Utils.Enums;
 
 namespace Anas_sBookShelf.Entities
 {
@@ -14,6 +10,8 @@ namespace Anas_sBookShelf.Entities
         }
         public int Id { get; set; }
         public string TotalPrice { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public CartStatus CartStatus { get; set; } = CartStatus.Open;
 
 
         public int CustomerId { get; set; }
