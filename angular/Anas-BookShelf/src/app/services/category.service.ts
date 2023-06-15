@@ -10,7 +10,7 @@ import { Category } from "src/models/category/category.model";
 
 export class CategoryService {
 
-    httpUrl :string = `https://localhost:7283/api/Categories/`
+    httpUrl :string = `https://localhost:7283/api/Categories`
 
     constructor(private http: HttpClient){}
 
