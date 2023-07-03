@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { Category } from 'src/models/category/category.model';
 import { CategoryService } from '../services/category.service';
-// import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
 
 @Component({
   selector: 'app-categories',
@@ -27,29 +27,29 @@ export class CategoriesComponent implements OnInit{
     this.loadCategories();
   }
 
-  // openDeleteDialog(category: Category) {
+  openDeleteDialog(category: Category) {
 
-  //   const dialogRef = this.dialog.open(DeleteCategoryComponent, {
-  //     data: category
-  //   });
+    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
+      data: category
+    });
 
-  //   dialogRef.afterClosed().subscribe({
-  //     next: (result: boolean) => {
+    dialogRef.afterClosed().subscribe({
+      next: (result: boolean) => {
 
-  //       if (result) {
-  //         this.catSvc.deleteCategory(category.id).subscribe({
-  //           next: () => {
-  //             this.loadCategories();
-  //           },
-  //           error: (err: HttpErrorResponse) => {
-  //             this.snackBar.open(`${category.name} cannot be deleted. ${err.message}`);
-  //           }
-  //         });
-  //       }
+        if (result) {
+          this.catSvc.deleteCategory(category.id).subscribe({
+            next: () => {
+              this.loadCategories();
+            },
+            error: (err: HttpErrorResponse) => {
+              this.snackBar.open(`${category.name} cannot be deleted. ${err.message}`);
+            }
+          });
+        }
 
-  //     }
-  //   });
-  // }
+      }
+    });
+  }
 
 
   //#region Private Functions

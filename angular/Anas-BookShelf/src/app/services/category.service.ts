@@ -35,4 +35,9 @@ export class CategoryService {
     
         return this.http.put<Category>(`${this.httpUrl}/EditCategory/${category.id}`, category);
       }
+
+      deleteCategory(categoryId: number): Observable<any> {
+
+        return this.http.delete<Category>(`${this.httpUrl}/DeleteCategory/${categoryId}`);
+      }
 }

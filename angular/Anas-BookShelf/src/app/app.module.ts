@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoriesComponent } from './categories/categories.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { AddEditCategoryComponent } from './categories/add-edit-category/add-edit-category.component';
+import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
+import { DeleteCategoryComponent } from './categories/delete-category/delete-category.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AddEditCategoryComponent,
+    CategoryDetailsComponent,
+    DeleteCategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     SharedModule
   ],
