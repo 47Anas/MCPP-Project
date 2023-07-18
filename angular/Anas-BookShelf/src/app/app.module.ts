@@ -12,6 +12,10 @@ import { AddEditCategoryComponent } from './categories/add-edit-category/add-edi
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { DeleteCategoryComponent } from './categories/delete-category/delete-category.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { AddEditCustomerComponent } from './customer/add-edit-customer/add-edit-customer.component';
+import { DeleteCustomerComponent } from './customer/delete-customer/delete-customer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoriesComponent,
     AddEditCategoryComponent,
     CategoryDetailsComponent,
-    DeleteCategoryComponent
+    DeleteCategoryComponent,
+    CustomerComponent,
+    CustomerDetailsComponent,
+    AddEditCustomerComponent,
+    DeleteCustomerComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,6 @@ namespace Anas_sBookShelf.Dtos.CartDtos
         public string CustomerFullName { get; set; }
         public string TotalPrice { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public CartStatus CartStatus { get; set; }
+        public CartStatus Status { get; set; }
     }
 }

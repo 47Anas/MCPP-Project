@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddEditCategoryComponent } from './categories/add-edit-category/add-edit-category.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
+import { AddEditCustomerComponent } from './customer/add-edit-customer/add-edit-customer.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { CustomerComponent } from './customer/customer.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -13,10 +16,10 @@ const routes: Routes = [
   { path: 'category/add', component: AddEditCategoryComponent, },
   { path: 'category/edit/:id', component: AddEditCategoryComponent, },
 
-  // { path: 'customer', component: CustomerComponent, },
-  // { path: 'customer/details/:id', component: CustomerDetailsComponent, },
-  // { path: 'customer/add', component: AddEditCustomerComponent, },
-  // { path: 'customer/edit/:id', component: AddEditCustomerComponent, },
+  { path: 'customer', component: CustomerComponent, },
+  { path: 'customer/details/:id', component: CustomerDetailsComponent, },
+  { path: 'customer/add', component: AddEditCustomerComponent, },
+  { path: 'customer/edit/:id', component: AddEditCustomerComponent, },
 
   // { path: 'book', component: BookComponent },
   // { path: 'book/details/:id', component: BookDetailsComponent, },

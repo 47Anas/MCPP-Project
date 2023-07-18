@@ -11,7 +11,7 @@ namespace Anas_sBookShelf.Entities
         public int Id { get; set; }
         public string TotalPrice { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public CartStatus CartStatus { get; set; } = CartStatus.Open;
+        public CartStatus Status { get; set; } = CartStatus.Open;
 
 
         public int CustomerId { get; set; }

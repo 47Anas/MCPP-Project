@@ -5,6 +5,7 @@ using Anas_sBookShelf.Entities;
 using Anas_sBookShelf.WepApi;
 using Anas_sBookShelf.Dtos.CustomerDtos;
 using Anas_sBookShelf.EfCore;
+using Anas_sBookShelf.Dtos.LookUps;
 
 namespace MB.KFC.WebApi.Controllers
 {
@@ -110,6 +111,15 @@ namespace MB.KFC.WebApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetCustomersLookup()
+        {
+            return await _context
+                        .Customers
+                        .Select(p => new LookupDto { Id = p.Id, Name = p.FullName })
+                        .ToListAsync();
         }
 
         #endregion

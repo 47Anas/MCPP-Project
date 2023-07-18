@@ -19,7 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatSnackBarModule,
         MatDialogModule,
         MatDatepickerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatSnackBarModule
     ]
 })
 
