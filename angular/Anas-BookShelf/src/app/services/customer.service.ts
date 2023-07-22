@@ -32,10 +32,10 @@ export class CustomerService {
     return this.http.post<any>(`${this.httpUrl}/CreateCustomer`, customer);
   }
 
-  // getCustomerForEdit(customerId: number): Observable<Customer> {
+  getCustomerForEdit(customerId: number): Observable<Customer> {
 
-  //   return this.http.get<Customer>(`${this.httpUrl}/GetCustomerForEdit/${customerId}`);
-  // }
+    return this.http.get<Customer>(`${this.httpUrl}/GetCustomerForEdit/${customerId}`);
+  }
 
   editCustomer(customer: Customer): Observable<any> {
 

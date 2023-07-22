@@ -54,7 +54,7 @@ namespace MB.KFC.WebApi.Controllers
             var cusDto = _mapper.Map<CustomerDetailsDto>(customer);
 
             return cusDto;
-        }
+            }
 
         [HttpPost]
         public async Task<ActionResult> CreateCustomer(CustomerDto customerDto)
@@ -65,6 +65,25 @@ namespace MB.KFC.WebApi.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CustomerDto>> GetCustomerForEdit(int id)
+        {
+            var customer = await _context
+                                    .Customers
+                                    //.Include(customer => customer.Images)
+                                    .SingleOrDefaultAsync(c => c.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var cusDto = _mapper.Map<CustomerDto>(customer);
+
+            return cusDto;
         }
 
         [HttpPut("{id}")]
