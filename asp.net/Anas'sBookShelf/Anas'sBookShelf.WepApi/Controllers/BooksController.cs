@@ -4,6 +4,7 @@ using AutoMapper;
 using Anas_sBookShelf.Dtos.BookDtos;
 using Anas_sBookShelf.Entities;
 using Anas_sBookShelf.EfCore;
+using Anas_sBookShelf.Dtos.LookUps;
 
 namespace Anas_sBookShelf.WepApi.Controllers
 {
@@ -84,11 +85,23 @@ namespace Anas_sBookShelf.WepApi.Controllers
                 return BadRequest();
             }
 
-            var book = _mapper.Map<Book>(bookDto);
+            var book = await _context.Books
+                .Include(b => b.Categories)
+                .Where(b => b.Id == id)
+                .SingleOrDefaultAsync();
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(bookDto, book);
+
             _context.Entry(book).State = EntityState.Modified;
 
             try
             {
+                await UpdateBookCategories(bookDto.CategoryIds, book);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -120,6 +133,15 @@ namespace Anas_sBookShelf.WepApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetBooksLookup()
+        {
+            return await _context
+                        .Books
+                        .Select(p => new LookupDto { Id = p.Id, Name = p.Name })
+                        .ToListAsync();
         }
 
         #endregion

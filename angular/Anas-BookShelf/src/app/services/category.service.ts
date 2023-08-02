@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Category } from "src/models/category/category.model";
+import { Lookup } from "src/models/LookUps/lookup.model";
 
 
 @Injectable({
@@ -9,6 +10,7 @@ import { Category } from "src/models/category/category.model";
   })
 
 export class CategoryService {
+  
 
     httpUrl :string = `https://localhost:7283/api/Categories`
 
@@ -39,5 +41,10 @@ export class CategoryService {
       deleteCategory(categoryId: number): Observable<any> {
 
         return this.http.delete<Category>(`${this.httpUrl}/DeleteCategory/${categoryId}`);
+      }
+
+      getCategoriesLookup(): Observable<Lookup[]> {
+
+        return this.http.get<Lookup[]>(`${this.httpUrl}/GetCategoriesLookup`);
       }
 }

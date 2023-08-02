@@ -4,6 +4,7 @@ using Anas_sBookShelf.Entities;
 using AutoMapper;
 using Anas_sBookShelf.Dtos.CategoriesDtos;
 using Anas_sBookShelf.EfCore;
+using Anas_sBookShelf.Dtos.LookUps;
 
 namespace Anas_sBookShelf.WepApi.Controllers
 {
@@ -114,14 +115,14 @@ namespace Anas_sBookShelf.WepApi.Controllers
             return NoContent();
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<List<LookupDto>>> GetCategoriesLookup()
-        //{
-        //    return await _context
-        //                    .Categories
-        //                    .Select(cat => new LookupDto { Id = cat.Id, Name = cat.Name })
-        //                    .ToListAsync();
-        //}
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetCategoriesLookup()
+        {
+            return await _context
+                            .Categories
+                            .Select(cat => new LookupDto { Id = cat.Id, Name = cat.Name })
+                            .ToListAsync();
+        }
 
 
         #endregion

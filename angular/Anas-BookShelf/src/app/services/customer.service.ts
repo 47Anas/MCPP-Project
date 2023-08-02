@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CustomerList } from 'src/models/customer/customeList.model';
 import { Customer } from 'src/models/customer/customer.model';
 import { CustomerDetails } from 'src/models/customer/customerDetails.model';
-import { Lookup } from 'src/models/LoopUps/lookup.model';
+import { Lookup } from 'src/models/LookUps/lookup.model';
 
 @Injectable({
   providedIn: 'root'

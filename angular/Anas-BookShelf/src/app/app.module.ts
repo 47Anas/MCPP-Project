@@ -16,6 +16,10 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { AddEditCustomerComponent } from './customer/add-edit-customer/add-edit-customer.component';
 import { DeleteCustomerComponent } from './customer/delete-customer/delete-customer.component';
+import { BookComponent } from './book/book.component';
+import { DeleteBookComponent } from './book/delete-book/delete-book.component';
+import { AddEditBookComponent } from './book/add-edit-book/add-edit-book.component';
+import { BookDetailsComponent } from './book/book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { DeleteCustomerComponent } from './customer/delete-customer/delete-custo
     CustomerComponent,
     CustomerDetailsComponent,
     AddEditCustomerComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    BookComponent,
+    DeleteBookComponent,
+    AddEditBookComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

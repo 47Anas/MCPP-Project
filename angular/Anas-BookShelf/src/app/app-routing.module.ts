@@ -7,6 +7,9 @@ import { AddEditCustomerComponent } from './customer/add-edit-customer/add-edit-
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { CustomerComponent } from './customer/customer.component';
 import { HomeComponent } from './home/home.component';
+import { BookComponent } from './book/book.component';
+import { AddEditBookComponent } from './book/add-edit-book/add-edit-book.component';
+import { BookDetailsComponent } from './book/book-details/book-details.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent },
@@ -21,10 +24,10 @@ const routes: Routes = [
   { path: 'customer/add', component: AddEditCustomerComponent, },
   { path: 'customer/edit/:id', component: AddEditCustomerComponent, },
 
-  // { path: 'book', component: BookComponent },
-  // { path: 'book/details/:id', component: BookDetailsComponent, },
-  // { path: 'book/add', component: AddEditBookComponent, },
-  // { path: 'book/edit/:id', component: AddEditBookComponent, },
+  { path: 'book', component: BookComponent },
+  { path: 'book/details/:id', component: BookDetailsComponent, },
+  { path: 'book/add', component: AddEditBookComponent, },
+  { path: 'book/edit/:id', component: AddEditBookComponent, },
 
   // { path: 'cart', component: CartComponent, },
 
