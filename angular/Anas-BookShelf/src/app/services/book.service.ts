@@ -2,7 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Lookup } from "src/models/LookUps/lookup.model";
-import { Book } from "src/models/books/book.model"
+import { BookDto } from "src/models/books/book.model"
+import { BookDetailsDto } from "src/models/books/bookDetails.model";
 
 @Injectable({
     providedIn: 'root'
@@ -14,29 +15,33 @@ export class BookService {
   
     constructor(private http: HttpClient) { }
   
-    getBooks(): Observable<Book[]> {
+    getBooks(): Observable<BookDetailsDto[]> {
   
-      return this.http.get<Book[]>(`${this.httpUrl}/GetBooks`);
+      return this.http.get<BookDetailsDto[]>(`${this.httpUrl}/GetBooks`);
     }
   
-    getBook(id: number): Observable<Book> {
+    getBook(id: number): Observable<BookDetailsDto> {
   
-      return this.http.get<Book>(`${this.httpUrl}/GetBook/${id}`);
+      return this.http.get<BookDetailsDto>(`${this.httpUrl}/GetBook/${id}`);
+    }
+
+    getBookForEdit(id: number): Observable<BookDto> {
+      return this.http.get<BookDto>(`${this.httpUrl}/GetBookForEdit/${id}`);
     }
   
-    createBook(book: Book): Observable<Book> {
+    createBook(book: BookDto): Observable<BookDto> {
   
-      return this.http.post<Book>(`${this.httpUrl}/CreateBook`, book);
+      return this.http.post<BookDto>(`${this.httpUrl}/CreateBook`, book);
     }
   
-    editBook(book: Book): Observable<any> {
+    editBook(book: BookDto): Observable<any> {
   
-      return this.http.put<Book>(`${this.httpUrl}/EditBook/${book.id}`, book);
+      return this.http.put<BookDto>(`${this.httpUrl}/EditBook/${book.id}`, book);
     }
   
     deleteBook(bookId: number): Observable<any> {
   
-      return this.http.delete<Book>(`${this.httpUrl}/DeleteBook/${bookId}`);
+      return this.http.delete<BookDto>(`${this.httpUrl}/DeleteBook/${bookId}`);
     }
   
     getBooksLookup(): Observable<Lookup[]> {

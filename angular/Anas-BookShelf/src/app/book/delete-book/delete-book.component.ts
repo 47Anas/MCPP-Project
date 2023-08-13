@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Book } from 'src/models/books/book.model';
+import { BookDto } from 'src/models/books/book.model';
 
 @Component({
   selector: 'app-delete-book',
@@ -9,11 +9,11 @@ import { Book } from 'src/models/books/book.model';
 })
 export class DeleteBookComponent implements OnInit {
 
-  book!: Book;
+  book!: BookDto;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteBookComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Book,
+    @Inject(MAT_DIALOG_DATA) public data: BookDto,
   ) { }
 
   ngOnInit(): void {

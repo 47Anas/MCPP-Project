@@ -27,7 +27,7 @@
   
         <div class="row mt-2">
           <div class="col-md-2 fw-bold">Categories</div>
-          <div class="col-md-4" *ngFor="let book of books">{{ book?.categoryName}}</div>
+          <div class="col-md-4" *ngFor="let category of book?.categories">{{category.name}}</div>
         </div>
       </div>
       <!-- <div class="col-md-6">

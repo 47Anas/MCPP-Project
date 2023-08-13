@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageMode } from 'src/app/enum/pageMode.enum';
 import { Lookup } from 'src/models/LookUps/lookup.model';
-import { Book } from 'src/models/books/book.model';
+import { BookDto } from 'src/models/books/book.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { BookService } from 'src/app/services/book.service';
 
@@ -24,7 +24,7 @@ export class AddEditBookComponent implements OnInit {
   categoryLookup: Lookup[] = [];
 
   bookId!: number;
-  book!: Book;
+  book!: BookDto;
   pageMode: PageMode = PageMode.add;
 
   pageModeEnum = PageMode;
@@ -110,8 +110,8 @@ export class AddEditBookComponent implements OnInit {
 
   private loadBook(): void {
 
-    this.bookSvc.getBook(this.bookId).subscribe({
-      next: (bookFromApi: Book) => {
+    this.bookSvc.getBookForEdit(this.bookId).subscribe({
+      next: (bookFromApi: BookDto) => {
 
         this.book = bookFromApi;
         this.patchBookForm();
@@ -141,7 +141,7 @@ export class AddEditBookComponent implements OnInit {
   private createBook(): void {
 
     this.bookSvc.createBook(this.bookForm.value).subscribe({
-      next: (bookFromApi: Book) => {
+      next: (bookFromApi: BookDto) => {
         this.snackBar.open("Book has been created Successfully");
       },
       error: (err: HttpErrorResponse) => {
@@ -153,7 +153,7 @@ export class AddEditBookComponent implements OnInit {
   private saveBook(): void {
 
     this.bookSvc.editBook(this.bookForm.value).subscribe({
-      next: (bookFromApi: Book) => {
+      next: (bookFromApi: BookDto) => {
         this.snackBar.open("Book has been updated Successfully");
         this.router.navigate(['book']);
       },

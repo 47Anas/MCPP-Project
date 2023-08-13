@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
-import { Book } from 'src/models/books/book.model';
+import { BookDetailsDto } from 'src/models/books/bookDetails.model';
+
 
 @Component({
   selector: 'app-book-details',
@@ -19,8 +20,7 @@ export class BookDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   bookId!: number;
-  book?: Book;
-  books?: Book[];
+  book?: BookDetailsDto;
 
   ngOnInit(): void {
 
@@ -45,7 +45,7 @@ export class BookDetailsComponent implements OnInit {
   private loadBooks(): void {
 
     this.bookSvc.getBook(this.bookId).subscribe({
-      next: (booksFromApi: Book) => {
+      next: (booksFromApi: BookDetailsDto) => {
         this.book = booksFromApi;
 
         // if (booksFromApi.images) {

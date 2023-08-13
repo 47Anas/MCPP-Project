@@ -2,7 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Book } from "src/models/books/book.model"
+import { } from "src/models/books/book.model"
+import { BookDetailsDto } from 'src/models/books/bookDetails.model';
 import { BookService } from '../services/book.service';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
 
@@ -13,8 +14,8 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
 })
 export class BookComponent implements OnInit {
 
-  bookDS: Book[] = [];
-  bookColumns: string[] = ['id', 'name', 'categoryName', 'actions'];
+  bookDS: BookDetailsDto[] = [];
+  bookColumns: string[] = ['id', 'name', 'actions'];
 
   constructor(
     private bookSvc: BookService,
@@ -26,7 +27,7 @@ export class BookComponent implements OnInit {
     this.loadBooks();
   }
 
-  openDeleteDialog(book: Book) {
+  openDeleteDialog(book: BookDetailsDto) {
 
     const dialogRef = this.dialog.open(DeleteBookComponent, {
       data: book
@@ -51,7 +52,7 @@ export class BookComponent implements OnInit {
     });
   }
 
-  addToCart(book: Book): void {
+  addToCart(book: BookDetailsDto): void {
 
     this.bookSvc.addToCart(book.id).subscribe({
       next: () => {
@@ -68,7 +69,7 @@ export class BookComponent implements OnInit {
   private loadBooks(): void {
 
     this.bookSvc.getBooks().subscribe({
-      next: (booksFromApi: Book[]) => {
+      next: (booksFromApi: BookDetailsDto[]) => {
         this.bookDS = booksFromApi;
       },
       error: (err: HttpErrorResponse) => {

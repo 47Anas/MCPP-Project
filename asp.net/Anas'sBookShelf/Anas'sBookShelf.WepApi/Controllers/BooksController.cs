@@ -5,6 +5,7 @@ using Anas_sBookShelf.Dtos.BookDtos;
 using Anas_sBookShelf.Entities;
 using Anas_sBookShelf.EfCore;
 using Anas_sBookShelf.Dtos.LookUps;
+using AnassBookShelf.Utils.Enums;
 
 namespace Anas_sBookShelf.WepApi.Controllers
 {
@@ -59,6 +60,24 @@ namespace Anas_sBookShelf.WepApi.Controllers
             return bookDto;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BookDto>> GetBookForEdit(int id)
+        {
+            var book = await _context
+                                    .Books
+                                    .Include(p => p.Categories)
+                                    .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            var bookDto = _mapper.Map<BookDto>(book);
+
+
+            return bookDto;
+        }
         [HttpPost]
         public async Task<ActionResult<Book>> CreateBook(BookDto bookDto)
         {
@@ -144,6 +163,31 @@ namespace Anas_sBookShelf.WepApi.Controllers
                         .ToListAsync();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddProductToCart(int bookId)
+        {
+            var book = await _context
+                                    .Books
+                                    .FindAsync(bookId);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            var cart = await GetCart();
+
+            cart.Books.Add(book);
+            await _context.SaveChangesAsync();
+
+            // TODO update cart total price
+            var price = book.Price;
+            var totalPrice = price.Cast<double>().Sum();
+
+            return Ok();
+        }
+
+
         #endregion
 
         #region Pivate Methods
@@ -164,6 +208,32 @@ namespace Anas_sBookShelf.WepApi.Controllers
 
             book.Categories.AddRange(Categories);
         }
+
+
+        private async Task<Cart> GetCart()
+        {
+            var cart = await _context
+                                .Carts
+                                .Where(c => c.Status == CartStatus.Open)
+                                .SingleOrDefaultAsync();
+
+            if (cart != null) // An open cart has been found
+            {
+                return cart;
+            }
+
+            // What if there is not open cart? then create a new cart
+            var newCart = new Cart();
+            newCart.CustomerId = 6; // Customer 10 is hardcoded for now
+
+            await _context.Carts.AddAsync(newCart);
+            await _context.SaveChangesAsync();
+
+            return newCart;
+        }
+
+
+
         #endregion
     }
 }

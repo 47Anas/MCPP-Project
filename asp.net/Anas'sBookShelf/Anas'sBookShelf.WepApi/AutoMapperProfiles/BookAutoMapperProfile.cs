@@ -11,7 +11,11 @@ namespace Anas_sBookShelf.WepApi.AutoMapperProfiles
             CreateMap<Book, BookListDto>();
             CreateMap<Book, BookDetailsDto>();
 
-            CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Book, BookDto>()
+                .ForMember(dest => dest.CategoryIds,
+                            opts => opts.MapFrom(src => src.Categories.Select(a => a.Id)))
+                .ReverseMap();
+            ;
 
         }
     }

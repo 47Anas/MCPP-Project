@@ -1,10 +1,10 @@
 import { Category } from "../category/category.model";
 
-export interface BookDto {
+export interface BookDetailsDto {
     // images: any;
     id: number;
     name: string;
     description :string;
     price: number;
-    categoryIds: number[];
+    categories: Category[];
 }
