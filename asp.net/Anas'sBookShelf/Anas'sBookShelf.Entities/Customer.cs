@@ -10,7 +10,7 @@ namespace Anas_sBookShelf.Entities
     {
         public Customer()
         {
-            Carts = new List<Cart>();
+            Orders = new List<Order>();
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -35,6 +35,6 @@ namespace Anas_sBookShelf.Entities
         }
 
 
-        public List<Cart> Carts { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

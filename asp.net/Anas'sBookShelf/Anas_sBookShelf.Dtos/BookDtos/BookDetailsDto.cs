@@ -16,8 +16,6 @@ namespace Anas_sBookShelf.Dtos.BookDtos
 
         public double Price { get; set; }
 
-      //  public List<Cart> Carts { get; set; }
-
         public List<CategoryDto> Categories { get; set; }
     }
 }

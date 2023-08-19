@@ -10,6 +10,6 @@ namespace Anas_sBookShelf.Dtos.CustomerDtos
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
 
-        public List<Cart> Carts { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

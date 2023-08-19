@@ -7,7 +7,7 @@
             Books = new List<Book>();
         }
         public int Id { get; set; }
-        public string TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
         public string Note { get; set; } 
         public DateTime OrderDate { get; set; }
 

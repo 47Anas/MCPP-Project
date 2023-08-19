@@ -6,7 +6,7 @@
         {
             Categories = new List<Category>();
 
-            Carts = new List<Cart>();
+            Orders = new List<Order>();
 
         }
         public int Id { get; set; }
@@ -15,7 +15,7 @@
 
         public double Price { get; set; }
 
-        public List<Cart> Carts { get; set; }
+        public List<Order> Orders { get; set; }
         public List<Category> Categories { get; set; }
     }
 }

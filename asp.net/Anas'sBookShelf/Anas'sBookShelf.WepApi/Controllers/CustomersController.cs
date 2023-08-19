@@ -43,7 +43,7 @@ namespace MB.KFC.WebApi.Controllers
         {
             var customer = await _context
                                     .Customers
-                                    .Include(c => c.Carts)
+                                    .Include(c => c.Orders)
                                     .SingleOrDefaultAsync(c => c.Id == id);
 
             if (customer == null)
