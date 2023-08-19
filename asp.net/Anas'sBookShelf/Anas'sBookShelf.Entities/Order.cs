@@ -1,17 +1,15 @@
-﻿using AnassBookShelf.Utils.Enums;
-
-namespace Anas_sBookShelf.Entities
+﻿namespace Anas_sBookShelf.Entities
 {
-    public class Cart
+    public class Order
     {
-        public Cart()
+        public Order()
         {
             Books = new List<Book>();
         }
         public int Id { get; set; }
         public string TotalPrice { get; set; }
-        public DateTime CheckOutDate { get; set; }
-        public CartStatus Status { get; set; } = CartStatus.Open;
+        public string Note { get; set; } 
+        public DateTime OrderDate { get; set; }
 
 
         public int CustomerId { get; set; }

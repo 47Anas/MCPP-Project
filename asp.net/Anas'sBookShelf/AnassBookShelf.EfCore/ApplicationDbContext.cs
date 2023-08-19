@@ -9,7 +9,7 @@ namespace Anas_sBookShelf.EfCore
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
 
 
