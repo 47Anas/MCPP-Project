@@ -1,4 +1,7 @@
-﻿namespace Anas_sBookShelf.Entities
+﻿using Anas_sBookShelf.Entities.Books;
+using Anas_sBookShelf.Entities.Cutomer;
+
+namespace Anas_sBookShelf.Entities
 {
     public class Order
     {

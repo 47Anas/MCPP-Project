@@ -1,5 +1,5 @@
 ﻿using Anas_sBookShelf.Dtos.CustomerDtos;
-using Anas_sBookShelf.Entities;
+using Anas_sBookShelf.Entities.Cutomer;
 using AutoMapper;
 
 namespace Anas_sBookShelf.WepApi.AutoMapperProfiles

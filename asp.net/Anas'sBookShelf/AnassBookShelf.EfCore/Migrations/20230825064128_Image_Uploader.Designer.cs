@@ -4,6 +4,7 @@ using Anas_sBookShelf.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Anas_sBookShelf.WepApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230825064128_Image_Uploader")]
+    partial class Image_Uploader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +27,7 @@ namespace Anas_sBookShelf.WepApi.Migrations
 
             modelBuilder.HasSequence("UploaderImageSequence");
 
-            modelBuilder.Entity("Anas_sBookShelf.Entities.Books.Book", b =>
+            modelBuilder.Entity("Anas_sBookShelf.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,16 +133,11 @@ namespace Anas_sBookShelf.WepApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
 
                     b.ToTable("UploaderImages", (string)null);
 
@@ -183,8 +181,6 @@ namespace Anas_sBookShelf.WepApi.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.HasIndex("CustomerId");
-
                     b.ToTable("CustomerImages", (string)null);
                 });
 
@@ -199,16 +195,9 @@ namespace Anas_sBookShelf.WepApi.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Anas_sBookShelf.Entities.Uploader.UploaderImage", b =>
-                {
-                    b.HasOne("Anas_sBookShelf.Entities.Books.Book", null)
-                        .WithMany("Images")
-                        .HasForeignKey("BookId");
-                });
-
             modelBuilder.Entity("BookCategory", b =>
                 {
-                    b.HasOne("Anas_sBookShelf.Entities.Books.Book", null)
+                    b.HasOne("Anas_sBookShelf.Entities.Book", null)
                         .WithMany()
                         .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -223,7 +212,7 @@ namespace Anas_sBookShelf.WepApi.Migrations
 
             modelBuilder.Entity("BookOrder", b =>
                 {
-                    b.HasOne("Anas_sBookShelf.Entities.Books.Book", null)
+                    b.HasOne("Anas_sBookShelf.Entities.Book", null)
                         .WithMany()
                         .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -236,24 +225,8 @@ namespace Anas_sBookShelf.WepApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Anas_sBookShelf.Entities.Cutomer.CustomerImage", b =>
-                {
-                    b.HasOne("Anas_sBookShelf.Entities.Cutomer.Customer", null)
-                        .WithMany("Images")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Anas_sBookShelf.Entities.Books.Book", b =>
-                {
-                    b.Navigation("Images");
-                });
-
             modelBuilder.Entity("Anas_sBookShelf.Entities.Cutomer.Customer", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

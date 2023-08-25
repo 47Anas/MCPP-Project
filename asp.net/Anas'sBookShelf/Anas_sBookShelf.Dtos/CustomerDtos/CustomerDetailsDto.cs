@@ -1,4 +1,5 @@
-﻿using Anas_sBookShelf.Entities;
+﻿using Anas_sBookShelf.Dtos.Uploaders;
+using Anas_sBookShelf.Entities;
 
 namespace Anas_sBookShelf.Dtos.CustomerDtos
 {
@@ -9,6 +10,8 @@ namespace Anas_sBookShelf.Dtos.CustomerDtos
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
+
+        public List<UploaderImageDto> Images { get; set; }
 
         public List<Order> Orders { get; set; }
     }

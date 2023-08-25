@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Anas_sBookShelf.Dtos.BookDtos;
-using Anas_sBookShelf.Entities;
 using Anas_sBookShelf.EfCore;
 using Anas_sBookShelf.Dtos.LookUps;
+using Anas_sBookShelf.Entities.Books;
 
 namespace Anas_sBookShelf.WepApi.Controllers
 {
@@ -46,6 +46,7 @@ namespace Anas_sBookShelf.WepApi.Controllers
             var book = await _context
                                     .Books
                                     .Include(p => p.Categories)
+                                    .Include(customer => customer.Images)
                                     .SingleOrDefaultAsync(p => p.Id == id);
 
             if (book == null)

@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Anas_sBookShelf.Dtos\Anas_sBookShelf.Dtos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
 </Project>

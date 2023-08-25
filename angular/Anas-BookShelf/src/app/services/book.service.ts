@@ -49,8 +49,5 @@ export class BookService {
       return this.http.get<Lookup[]>(`${this.httpUrl}/GetBooksLookup`);
     }
   
-    addToCart(bookId: number): Observable<any> {
-  
-      return this.http.post<any>(`${this.httpUrl}/AddBookToCart?bookId=${bookId}`, bookId);
-    }
+    
   }

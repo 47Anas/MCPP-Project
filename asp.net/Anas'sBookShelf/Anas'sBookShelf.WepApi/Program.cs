@@ -1,6 +1,9 @@
 
 using Anas_sBookShelf.EfCore;
+using Anas_sBookShelf.WepApi.Helpers.ImageUploader;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Anas_sBookShelf.WepApi
 {
@@ -38,6 +41,18 @@ namespace Anas_sBookShelf.WepApi
                                   });
             });
 
+            builder.Services.AddTransient<IImageUploader, ImageUploader>();
+
+            builder.Services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
+            builder.Services.Configure<ImageUploaderConfig>(
+                builder.Configuration.GetSection(nameof(ImageUploaderConfig)));
+
             var app = builder.Build();
 
 
@@ -54,6 +69,12 @@ namespace Anas_sBookShelf.WepApi
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = new PathString("/Resources")
+            });
 
             app.MapControllers();
 

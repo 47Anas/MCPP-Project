@@ -31,7 +31,7 @@ namespace Anas_sBookShelf.WepApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderListDto>>> GetOrders()
         {
-            var orders = _context
+            var orders = await _context
                                 .Orders
                                 .Include(o => o.Customer)
                                 .ToListAsync();
@@ -72,16 +72,16 @@ namespace Anas_sBookShelf.WepApi.Controllers
                 return BadRequest();
             }
 
-            var order = await GetOrderWithBooks(id);
+            Order order = await GetOrderWithBooks(id);
 
             _mapper.Map(orderDto, order); //This is for Patching values not mapping
 
 
             try
             {
-                await UpdateOrderBooks(orderDto.BookIds, (Order)order);
+                await UpdateOrderBooks(orderDto.BookIds, order);
 
-                order.TotalPrice = GetOrderTotalPrice((Order)order);
+                order.TotalPrice = GetOrderTotalPrice(order);
 
                 await _context.SaveChangesAsync();
             }
@@ -137,6 +137,28 @@ namespace Anas_sBookShelf.WepApi.Controllers
 
             return NoContent();
         }
+
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderDto>> GetOrderForEdit(int id)
+        {
+            var order = await _context
+                                .Orders
+                                .Include(o => o.Books)
+                                .SingleOrDefaultAsync(o => o.Id == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            var orderDto = _mapper.Map<OrderDto>(order);
+
+            //orderDto.ProductIds = order.Products.Select(p => p.Id).ToList();
+
+            return orderDto;
+        }
         #endregion
 
         #region Privates
@@ -164,7 +186,7 @@ namespace Anas_sBookShelf.WepApi.Controllers
         }
 
 
-        private async Task<object> GetOrderWithBooks(int id)
+        private async Task<Order> GetOrderWithBooks(int id)
         {
             var order = await _context
                                 .Orders

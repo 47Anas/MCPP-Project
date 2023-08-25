@@ -1,4 +1,6 @@
-﻿namespace Anas_sBookShelf.Entities
+﻿using Anas_sBookShelf.Entities.Books;
+
+namespace Anas_sBookShelf.Entities
 {
     public class Category
     {

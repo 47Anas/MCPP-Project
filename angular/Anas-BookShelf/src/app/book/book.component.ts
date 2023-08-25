@@ -52,17 +52,7 @@ export class BookComponent implements OnInit {
     });
   }
 
-  addToCart(book: BookDetailsDto): void {
 
-    this.bookSvc.addToCart(book.id).subscribe({
-      next: () => {
-        this.snackBar.open(`${book.name} has been added to cart successfully`);
-      },
-      error: (err: HttpErrorResponse) => {
-        this.snackBar.open(err.message);
-      }
-    });
-  }
 
   //#region Private Functions
 

@@ -13,20 +13,18 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/book']">Books</a>
+          <a class="nav-link" [routerLink]="['/books']">Books</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/customer']">Customers</a>
+            <a class="nav-link" [routerLink]="['/customers']">Customers</a>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/categories']">Categories</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/orders']">Orders</a>
+          </li>
         
       </ul>
-      <div class="d-flex">
-        <a class="ms-3 pointer fs-4" title="Shopping Cart" [routerLink]="['/cart']">
-          <i class="fa-solid fa-cart-shopping"></i>
-        </a>
-      </div>
     </div>
   </div>
 </nav>

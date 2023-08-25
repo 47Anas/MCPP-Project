@@ -20,7 +20,10 @@ import { BookComponent } from './book/book.component';
 import { DeleteBookComponent } from './book/delete-book/delete-book.component';
 import { AddEditBookComponent } from './book/add-edit-book/add-edit-book.component';
 import { BookDetailsComponent } from './book/book-details/book-details.component';
-import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { AddEditOrderComponent } from './orders/add-edit-order/add-edit-order.component';
+import { DeleteOrderComponent } from './orders/delete-order/delete-order.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { CartComponent } from './cart/cart.component';
     DeleteBookComponent,
     AddEditBookComponent,
     BookDetailsComponent,
-    CartComponent
+    OrderComponent,
+    OrderDetailsComponent,
+    AddEditOrderComponent,
+    DeleteOrderComponent
   ],
   imports: [
     BrowserModule,
