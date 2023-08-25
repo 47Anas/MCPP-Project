@@ -5,9 +5,10 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
-// import { UploaderMode, UploaderStyle, UploaderType } from 'src/app/directives/image-uploader/uploader.enums';
-// import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
+import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
+import { UploaderStyle, UploaderMode, UploaderType } from 'src/app/directives/image-uploader/uploader.enum';
+import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
+import { UploaderModeOld } from 'src/app/directives/image-uploader/uploaderMode.enum';
 import { PageMode } from 'src/app/enum/pageMode.enum';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/models/customer/customer.model';
@@ -19,9 +20,9 @@ import { Customer } from 'src/models/customer/customer.model';
 })
 export class AddEditCustomerComponent implements OnInit {
 
-  // images: UploaderImage[] = [];
-  // uploaderConfig = new ImageUploaderConfig(UploaderStyle.Profile, UploaderMode.AddEdit, UploaderType.Single);
-
+  uploaderConfig: ImageUploaderConfig = {
+    mode: UploaderModeOld.Profile
+  }
 
   customerForm!: FormGroup;
 
@@ -65,12 +66,11 @@ export class AddEditCustomerComponent implements OnInit {
     }
   }
 
-  // uploadFinished(uploaderImages: UploaderImage[]) {
+  customerImageUploaded() {
+    alert("Customer Image Uploaded");
+  }
 
-  //   this.customerForm.patchValue({
-  //     images: uploaderImages
-  //   });
-  // }
+
 
   //#region Private Functions
 
@@ -82,7 +82,7 @@ export class AddEditCustomerComponent implements OnInit {
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      // images: [[]]
+      images: [[]]
     });
   }
 
@@ -119,7 +119,7 @@ export class AddEditCustomerComponent implements OnInit {
       lastName: this.customer.lastName,
       phoneNumber: this.customer.phoneNumber,
       dateOfBirth: this.customer.dateOfBirth,
-      // images: this.customer.images
+      images: this.customer.images
     });
   }
 

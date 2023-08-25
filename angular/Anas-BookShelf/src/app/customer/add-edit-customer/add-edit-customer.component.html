@@ -54,11 +54,11 @@
   
         </div>
   
-        <!-- <div class="col-md-6">
+        <div class="col-md-6">
+
+          <app-image-uploader [config]="uploaderConfig" (onUploadFinished)="customerImageUploaded()"></app-image-uploader>
   
-          <app-image-uploader (onUploadFinished)="uploadFinished($event)" [config]="uploaderConfig"
-            [imagesNames]="images"></app-image-uploader>
-        </div> -->
+        </div>
   
       </div>
   
