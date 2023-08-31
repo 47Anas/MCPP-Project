@@ -8,6 +8,9 @@ namespace Anas_sBookShelf.EfCore
 {
     public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+        { }    
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -27,9 +30,6 @@ namespace Anas_sBookShelf.EfCore
                 .ToTable("CustomerImages");
         }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-        { }    
     }
 }
 

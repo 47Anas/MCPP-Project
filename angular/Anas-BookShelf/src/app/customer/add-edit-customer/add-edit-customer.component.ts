@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
 import { UploaderStyle, UploaderMode, UploaderType } from 'src/app/directives/image-uploader/uploader.enum';
 import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
-import { UploaderModeOld } from 'src/app/directives/image-uploader/uploaderMode.enum';
 import { PageMode } from 'src/app/enum/pageMode.enum';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/models/customer/customer.model';
@@ -20,9 +19,9 @@ import { Customer } from 'src/models/customer/customer.model';
 })
 export class AddEditCustomerComponent implements OnInit {
 
-  uploaderConfig: ImageUploaderConfig = {
-    mode: UploaderModeOld.Profile
-  }
+  images: UploaderImage[] = [];
+  uploaderConfig = new ImageUploaderConfig(UploaderStyle.Profile, UploaderMode.AddEdit, UploaderType.Single);
+
 
   customerForm!: FormGroup;
 
@@ -66,8 +65,11 @@ export class AddEditCustomerComponent implements OnInit {
     }
   }
 
-  customerImageUploaded() {
-    alert("Customer Image Uploaded");
+  uploadFinished(uploaderImages: UploaderImage[]) {
+
+    this.customerForm.patchValue({
+      images: uploaderImages
+    });
   }
 
 
@@ -102,9 +104,9 @@ export class AddEditCustomerComponent implements OnInit {
         this.customer = customerFromApi;
         this.patchCustomerForm();
 
-        // if (customerFromApi.images) {
-        //   this.images = customerFromApi.images;
-        // }
+        if (customerFromApi.images) {
+          this.images = customerFromApi.images;
+        }
       },
       error: (err: HttpErrorResponse) => {
         console.error(err.error);

@@ -10,7 +10,7 @@ export enum UploaderType {
 
 
 export enum UploaderMode {
-  AddEdit,
-  Details,
-  Profile
+    AddEdit,
+    Details,
+    Profile
 }
