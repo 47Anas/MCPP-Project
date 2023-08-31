@@ -45,8 +45,8 @@ namespace Anas_sBookShelf.WepApi.Controllers
         {
             var book = await _context
                                     .Books
-                                    .Include(p => p.Categories)
-                                    .Include(customer => customer.Images)
+                                    .Include(b => b.Categories)
+                                    .Include(b => b.Images)
                                     .SingleOrDefaultAsync(p => p.Id == id);
 
             if (book == null)

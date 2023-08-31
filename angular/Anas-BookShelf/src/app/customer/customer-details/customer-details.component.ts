@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
+import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
 import { UploaderStyle, UploaderMode, UploaderType } from 'src/app/directives/image-uploader/uploader.enum';
 import { CustomerService } from 'src/app/services/customer.service';
 import { CustomerDetails } from 'src/models/customer/customerDetails.model';

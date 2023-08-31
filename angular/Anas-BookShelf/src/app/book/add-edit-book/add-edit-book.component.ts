@@ -8,6 +8,9 @@ import { Lookup } from 'src/models/LookUps/lookup.model';
 import { BookDto } from 'src/models/books/book.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { BookService } from 'src/app/services/book.service';
+import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
+import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
+import { UploaderStyle, UploaderMode, UploaderType } from 'src/app/directives/image-uploader/uploader.enum';
 
 
 @Component({
@@ -17,8 +20,8 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class AddEditBookComponent implements OnInit {
 
-  // images: UploaderImage[] = [];
-  // uploaderConfig = new ImageUploaderConfig(UploaderStyle.Normal, UploaderMode.AddEdit, UploaderType.Multiple);
+  images: UploaderImage[] = [];
+  uploaderConfig = new ImageUploaderConfig(UploaderStyle.Normal, UploaderMode.AddEdit, UploaderType.Multiple);
 
   bookForm!: FormGroup;
   categoryLookup: Lookup[] = [];
@@ -28,7 +31,6 @@ export class AddEditBookComponent implements OnInit {
   pageMode: PageMode = PageMode.add;
 
   pageModeEnum = PageMode;
-  images: any;
 
   constructor(
     private fb: FormBuilder,
@@ -69,12 +71,12 @@ export class AddEditBookComponent implements OnInit {
     }
   }
 
-  // uploadFinished(uploaderImages: UploaderImage[]) {
+  uploadFinished(uploaderImages: UploaderImage[]) {
 
-  //   this.bookForm.patchValue({
-  //     images: uploaderImages
-  //   });
-  // }
+    this.bookForm.patchValue({
+      images: uploaderImages
+    });
+  }
 
   //#region Private Functions
 
@@ -85,8 +87,8 @@ export class AddEditBookComponent implements OnInit {
       name: ['', Validators.required],
       price: ['', Validators.required],
       categoryIds: [[], Validators.required],
-      description: ['']
-      // images: [[]]
+      description: [''],
+      images: [[]]
     });
   }
 
@@ -116,9 +118,9 @@ export class AddEditBookComponent implements OnInit {
         this.book = bookFromApi;
         this.patchBookForm();
 
-        // if (bookFromApi.images) {
-        //   this.images = bookFromApi.images;
-        // }
+        if (bookFromApi.images) {
+          this.images = bookFromApi.images;
+        }
 
       },
       error: (err: HttpErrorResponse) => {

@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: "https://www.kfc-jordan.com/api",
-    uploadUrl: "https://www.kfc-jordan.com/api/Upload",
-    imgStorageUrl: 'https://kfc-jordan.com/resources/images'
+    apiUrl: "https://aloslam/api",
+    uploadUrl: "https://aloslam/api/Upload",
+    imgStorageUrl: 'https://aloslam/resources/images'
   };

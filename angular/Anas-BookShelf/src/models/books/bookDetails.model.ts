@@ -1,3 +1,4 @@
+import { UploaderImage } from "src/app/directives/image-uploader/UploaderImage.data";
 import { Category } from "../category/category.model";
 
 export interface BookDetailsDto {
@@ -7,4 +8,5 @@ export interface BookDetailsDto {
     description :string;
     price: number;
     categories: Category[];
+    images: UploaderImage[];
 }

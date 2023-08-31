@@ -3,6 +3,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { BookDetailsDto } from 'src/models/books/bookDetails.model';
+import { UploaderImage } from 'src/app/directives/image-uploader/UploaderImage.data';
+import { ImageUploaderConfig } from 'src/app/directives/image-uploader/image-uploader.config';
+import { UploaderStyle, UploaderMode, UploaderType } from 'src/app/directives/image-uploader/uploader.enum';
 
 
 @Component({
@@ -12,8 +15,8 @@ import { BookDetailsDto } from 'src/models/books/bookDetails.model';
 })
 export class BookDetailsComponent implements OnInit {
 
-  // images: UploaderImage[] = [];
-  //uploaderConfig = new ImageUploaderConfig(UploaderStyle.Normal, UploaderMode.Details, UploaderType.Multiple);
+  images: UploaderImage[] = [];
+  uploaderConfig = new ImageUploaderConfig(UploaderStyle.Normal, UploaderMode.Details, UploaderType.Multiple);
 
   constructor(
     private bookSvc: BookService,
@@ -48,9 +51,9 @@ export class BookDetailsComponent implements OnInit {
       next: (booksFromApi: BookDetailsDto) => {
         this.book = booksFromApi;
 
-        // if (booksFromApi.images) {
-        //   this.images = booksFromApi.images;
-        // }
+        if (booksFromApi.images) {
+          this.images = booksFromApi.images;
+        }
 
       },
       error: (err: HttpErrorResponse) => {
